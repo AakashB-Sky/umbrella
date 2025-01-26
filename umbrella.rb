@@ -1,5 +1,6 @@
 # Write your solution here!
 require "http"
+require "json"
 require "dotenv/load"
 
 pp "Hi! Where are you located?"
