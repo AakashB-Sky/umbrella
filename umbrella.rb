@@ -13,9 +13,12 @@ gmaps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{user_lo
 # pull and store info from Google Maps API
 gmaps_hash = JSON.parse(HTTP.get(gmaps_url))
 
-# pp gmaps_hash # print the gmaps_hash
+# retrieve latitude and longitude information from gmaps_hash
 gmaps_coordinates = gmaps_hash.fetch("results")[0].fetch("geometry").fetch("location")
-# pp gmaps_coordinates
 lat = gmaps_coordinates.fetch("lat")
 lng = gmaps_coordinates.fetch("lng")
-pp "lat = #{lat}; lng = #{lng}"
+
+# pull and store weather info from Pirate Weather
+pirateweather_url = "https://api.pirateweather.net/forecast/#{PIRATE_WEATHER_KEY}/#{lat},#{lng}"
+pirateweather_hash = JSON.parse(HTTP.get(pirateweather_url))
+pp pirateweather_hash
