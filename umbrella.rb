@@ -31,3 +31,11 @@ current_temp = current_weather_hash.fetch("temperature")
 
 pp "It is currently #{current_temp}\u00B0F."
 pp "Current conditions: #{current_weather_summary}"
+
+# hourly forecast
+hourly_fcst_hash = pirateweather_hash.fetch("hourly").fetch("data")
+next_twelve_hash = hourly_fcst_hash[1..12]
+next_twelve_hash.each do |hour|
+  prob_rain = hour.fetch{"precipProbability"}
+  pp prob_rain
+end
